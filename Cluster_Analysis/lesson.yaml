@@ -1,0 +1,88 @@
+- Class: meta
+  Course: Statistical_Analysis_with_R
+  Lesson: Cluster Analysis
+  Author: Ramon Prat
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.4.5
+
+- Class: text
+  Output: Today we will cover Cluster Analysis, section 5.11 of Statistical Analysis with R
+
+- Class: text
+  Output: 'Cluster Analysis is a set of techniques that look for subgroups (clusters) in the data.
+  Objects belonging to the same group resemble each other. Objects belonging to different groups 
+  are dissimilar. Cluster Analysis is an unsupervised learning method which has two main different 
+  approaches, K-means clustering and Hierarchical Clustering.'
+  
+- Class: cmd_question
+  Output: 'K-means clustering is an approach where the analyst specifies the number of clusters he desires
+  to assign the observations to, and each observation is assigned to the cluster with the nearest centroid.
+  The objective is to minimize the within-cluster sum of squares (variability). K-means clustering is 
+  implemented in R with the kmeans() function. Create now a model that creates two clusters with 
+  the observations of the iris data set and save it with the name kmModel. Remove from the set iris the variable 
+  Species as cluster analysis only uses continuous variables. Type now kmModel<-kmeans(iris[,-5],2)'
+  CorrectAnswer: kmModel<-kmeans(iris[,-5],2)
+  AnswerTests: omnitest(correctExpr='kmModel<-kmeans(iris[,-5],2)')
+  Hint: Type kmModel<-kmeans(iris[,-5],2) at the command prompt.
+  
+- Class: cmd_question
+  Output: 'Type now kmModel to see the resulting model.'
+  CorrectAnswer: kmModel
+  AnswerTests: omnitest(correctExpr='kmModel')
+  Hint: Type at the prompt kmModel.
+  
+- Class: text
+  Output: 'We have split the 150 observations in the two most similarly possible groups, clusters. The model 
+  explains 77,6% of the set variability'
+  
+- Class: cmd_question
+  Output: 'We can add to the set a new variable "cluster" with value 1 or 2 to indicate the cluster of each
+  observation. Name the set with the new variable iriskm. Type now iriskm<-cbind(iris,cluster=kmModel$cluster)'
+  CorrectAnswer: iriskm<-cbind(iris,cluster=kmModel$cluster)
+  AnswerTests: omnitest(correctExpr='iriskm<-cbind(iris,cluster=kmModel$cluster)')
+  Hint: type at the prompt iriskm<-cbind(iris,cluster=kmModel$cluster)
+  
+- Class: cmd_question
+  Output: 'Use the head() function to print on the screen the first few lines of the iriskm set.'
+  CorrectAnswer: head(iriskm)
+  AnswerTests: omnitest(correctExpr='head(iriskm)')
+  Hint: Have you tried to type at the prompt head(iriskm)?
+  
+- Class: cmd_question
+  Output: 'Create now a contingency table with the categorical variables Species and Cluster to count
+  the species within each cluster. Species and cluster are the colums located at positions 5 and 6 of the set.'
+  CorrectAnswer: table(iriskm[,5:6])
+  AnswerTests: omnitest(correctExpr='table(iriskm[,5:6])')
+  Hint: Have you tried table(iriskm[,5:6]) ?
+  
+- Class: text
+  Output: 'Cluster 1 contains all the virginica species and almost all the versicolor while 
+  cluster two contains all setosa and the left versicolor from cluster 1.'
+
+- Class: text
+  Output: 'With the other method, hierarchical clustering, the number of clusters are not set in advance
+  and we end up with a dendrogram that allows to view at once the grouping obtained for each possible 
+  number of clusters, from 1 to n.' 
+
+- Class: text
+  Output: 'Hierarchical clustering consists in a process which starts assigning each observation
+  to a cluster, initially there are as many clusters as observations, and proceeds iteratively calculating distances 
+  between clusters and joining the closest ones until there is only a single cluster left which contains 
+  all the observations.' 
+
+- Class: cmd_question
+  Output: 'HC is implemented in R using together hclust() and dist() functions. Create now the Hierarchical 
+  cluster model for the observations of the set data, which contains a sample of only 20 observations of the
+  150 observations iris set. I have created for you this smaller subset from the original iris set to later
+  visualize better the dendrogram. Type  irish <- hclust(dist(data[,1:4]))'
+  CorrectAnswer: irish <- hclust(dist(data[,1:4]))
+  AnswerTests: omnitest(correctExpr='irish <- hclust(dist(data[,1:4]))')
+  Hint: Type at the prompt irish <- hclust(dist(data[,1:4]))
+
+- Class: cmd_question
+  Output: 'Plot the dendrogram using the hierarchical cluster model you just have created. 
+  Type plot(irish,main= "", labels=data[,5])'
+  CorrectAnswer: plot(irish,main= "", labels=data[,5])'
+  AnswerTests: omnitest(correctExpr='plot(irish,main= "", labels=data[,5])')
+  Hint: Type at the prompt plot(irish,main= "", labels=data[,5])

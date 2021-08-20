@@ -1,0 +1,279 @@
+- Class: meta
+  Course: Statistical Analysis with R
+  Lesson: Section 4. Descriptive Statistics
+  Author: Ramon Prat
+  Type: Standard
+  Organization: your organization's name goes here
+  Version: 2.4.5
+
+
+- Class: text
+  Output: Today, I'll be teaching you the basics of Descriptive Statistics. The section 4 of the manual.
+  
+# 4.1 Vieweing Data Objects
+
+- Class: text
+  Output: 'Apart from the exploratory functions such as "summary()", R provides the "View()" function 
+  which opens a window with the data set and allows scrolling through rows and columns as if it were a
+  spreadsheet.'
+  
+- Class: cmd_question
+  Output: 'Try now the summary function with the iris data set already loaded for you with the command
+  summary(iris).'
+  CorrectAnswer: 'summary(iris)'
+  AnswerTests: omnitest(correctExpr='summary(iris)')
+  Hint: Be aware that R is case sensitive
+  
+- Class: text
+  Output: 'As you see, for the categorical variable setosa it calculates frequencies, and for continuous variables
+  calculates Min, Max, quartiles and median. Simple measurements but a good starting point.'
+
+- Class: cmd_question
+  Output: 'Now, scroll through the data set in a new tab with the command View(iris)'
+  CorrectAnswer: 'View(iris)'
+  AnswerTests: omnitest(correctExpr='View(iris)')
+  Hint: Be aware that R is capital sensitive
+  
+- Class: text
+  Output: 'In the newly created tab iris it is possible to explore the data set, sorting by columns, using filters, ..
+  and more. You can try if you want now. And press enter when you are ready to continue with the lesson.'
+  
+  
+#4.2 Frequency Tables
+
+- Class: text
+  Output: 'Now we will see 4.2 Frequency Tables. Calculating frequencies is about counting occurrences.'
+
+- Class: text
+  Output: 'We will show several examples with the data set absenteeism of the R package openintro which
+  I already loaded in the background for you at start. The data set contains school absenteeism data
+  from New South Wales.'
+  
+- Class: cmd_question
+  Output: 'We will use three simple functions, head(), names() and dim() to have a first idea about
+  the data set. Type now head(absenteeism) which will print on the screen a few top lines of the set.'
+  CorrectAnswer: 'head(absenteeism)'
+  AnswerTests: omnitest(correctExpr='head(absenteeism)')
+  Hint: Be aware that R is case sensitive
+  
+- Class: cmd_question
+  Output: Type now names(absenteeism), which will give you the names of the variables (columns) of the set.
+  CorrectAnswer: 'names(absenteeism)'
+  AnswerTests: omnitest(correctExpr='names(absenteeism)')
+  Hint: Be aware that R is case sensitive
+
+- Class: cmd_question
+  Output: 'Finally, type now dim(absenteeism), which will give you the dimensions of the set,  
+  number of rows x number of columns.'
+  CorrectAnswer: 'dim(absenteeism)'
+  AnswerTests: omnitest(correctExpr='dim(absenteeism)')
+  Hint: Be aware that R is case sensitive
+  
+- Class: text
+  Output: 'With the output of these functions we see that we have a data frame, which has 146 rows
+  (observations) with 5 variables each: ethnicity (Aboriginal or Not), gender (M, F), age bucket, 
+  learner status (Average Learner or Slow Learner) and days (number of days absent). The four first variables
+  are categorical and the last one (days) numerical.'
+  
+- Class: cmd_question
+  Output: 'To count the elements of each class in a vector (column) of the data frame, that is to calculate
+  the frequency, we will use the function table(). Calculate now the number of men and women in 
+  the absenteeism set. Type table(absenteeism$sex). The dollar sign after the name is one of the ways 
+  to select the column.'
+  CorrectAnswer: 'table(absenteeism$sex)'
+  AnswerTests: omnitest(correctExpr='table(absenteeism$sex)')
+  Hint: Be aware that R is cases sensitive
+
+- Class: cmd_question
+  Output: 'Count now the number of slow and average learners'
+  CorrectAnswer: 'table(absenteeism$lrn)'
+  AnswerTests: omnitest(correctExpr='table(absenteeism$lrn)')
+  Hint: Have you tried to type table(absenteeism$lrn) ?
+
+- Class: text
+  Output: 'If we count for more than a variable at the same time we will create a contingency table.'
+  
+- Class: cmd_question
+  Output: 'Create a contingency table 2x2 with the variables sex and lrn and save it with the name
+  mytab. Type now mytab<-table(absenteeism$sex, absenteeism$lrn)'
+  CorrectAnswer: 'mytab<-table(absenteeism$sex, absenteeism$lrn)'
+  AnswerTests: omnitest(correctExpr='mytab<-table(absenteeism$sex, absenteeism$lrn)')
+  Hint: Have you tried to type mytab<-table(absenteeism$sex, absenteeism$lrn)?
+
+- Class: cmd_question
+  Output: 'Look now at the contents of mytab. Type mytab.'
+  CorrectAnswer: 'mytab'
+  AnswerTests: omnitest(correctExpr='mytab')
+  Hint: Have you tried to type mytab?
+
+- Class: cmd_question
+  Output: 'We can turn frequency tables into proportions tables with prop.table(). Type now
+  prop.table(mytab). Notice that the argument we pass to the function prop.table is a table'
+  CorrectAnswer: 'prop.table(mytab)'
+  AnswerTests: omnitest(correctExpr='prop.table(mytab)')
+  Hint: Have you tried to type prop.table(mytab)?
+
+- Class: cmd_question
+  Output: 'We can express proportions as percentages rounded with two decimals with the function round(). 
+  Type now round(prop.table(mytab)*100,2). As you see we are using functions within functions.'
+  CorrectAnswer: 'round(prop.table(mytab)*100,2)'
+  AnswerTests: omnitest(correctExpr='round(prop.table(mytab)*100,2)')
+  Hint: Have you tried to type round(prop.table(mytab)*100,2)?
+  
+# 4.3 Descriptive measures - q 28
+
+- Class: text
+  Output: 'Now we will see 4.3 Descriptive measures. Numerical descriptive measures together with
+  graphics form the starting point of most statistical analysis.'
+
+- Class: cmd_question
+  Output: 'We will keep exploring the absenteeism data set. Again, display the main descriptive
+  measures using the summary() function. Type summary(absenteeism)'
+  CorrectAnswer: 'summary(absenteeism)'
+  AnswerTests: omnitest(correctExpr='summary(absenteeism)')
+  Hint: Have you tried to type summary(absenteeism)?
+
+- Class: cmd_question
+  Output: 'We can use functions to calculate specific descriptive statistical measures not included in the 
+  summary() function. We can also focus our analysis to only some of the variables of the data set. Some of
+  the useful descriptive statistic measures loaded in the core R libraries are mean(), median(), sd(), max(),
+  min(), range(), or mad(). Now type mean(absenteeism$days) to calculate the mean of absent days.'
+  CorrectAnswer: 'mean(absenteeism$days)'
+  AnswerTests: omnitest(correctExpr='mean(absenteeism$days)')
+  Hint: Have you tried mean(absenteeism$days)?
+
+- Class: mult_question
+  Output: Which expression would you use to compute the standard deviation of the variable days?
+  AnswerChoices: median(absenteeism$days); sd(days); sd(absenteeism$days)
+  CorrectAnswer: 'sd(absenteeism$days)'
+  AnswerTests: omnitest(correctVal='sd(absenteeism$days)')
+  Hint: Have tried sd(absenteeism$days)?
+  
+- Class: text
+  Output: "If we want to compute a descriptive statistic of a variable but we want to split it in categories
+  we can use the function tapply(). The tapply() function takes at least three arguments, the first one is the column where we want to apply the function, the second the categories we want to use,
+  and the third the function we want to apply."
+  
+- Class: cmd_question
+  Output: 'We will calculate again the mean of absenteeism days but instead of the overall mean, we will
+  split it by sex, that is we will have the mean of absent days for men an the mean of absent days for
+  women. Type now tapply(days,list(sex,eth),mean)'
+  CorrectAnswer: tapply(days,list(sex,eth),mean)
+  AnswerTests: omnitest(correctExpr='tapply(days,list(sex,eth),mean)')
+  Hint: Have you tried tapply(days,list(sex,eth),mean)?
+
+- Class: text
+  Output: 'You probably have noticed that in the last command we called variables by its name without using 
+  the dollar symbol and the data set name. That is we have used eth instead of absenteeism$eth. This is because
+  I have executed for you in the background the command attach(absenteeism) which makes available the variable
+  names of a data frame. Once finished using and to avoid overloading the R session, I will execute 
+  detach(absenteeism).'
+  
+- Class: cmd_question
+  Output: 'We can save any of the tables we have created to a data frame which we can use later or export 
+  to a file. Type now meanDaysbySex<-tapply(days,list(sex),mean) to save the table to an object named
+  meanDaysbySex.'
+  CorrectAnswer: meanDaysbySex<-tapply(days,list(sex),mean)
+  AnswerTests: omnitest(correctExpr='meanDaysbySex<-tapply(days,list(sex),mean)')
+  Hint: Have you tried meanDaysbySex<-tapply(days,list(sex),mean)?
+
+- Class: cmd_question
+  Output: 'Export now the object meanDaysbySex to a csv (comma separated values) file named daysbySex.csv 
+  which later can open with other software such as spreadsheets. 
+  Type write.csv(meanDaysbySex,file="daysbySex.csv")'
+  CorrectAnswer: write.csv(meanDaysbySex,file="daysbySex.csv")
+  AnswerTests: omnitest(correctExpr='write.csv(meanDaysbySex,file="daysbySex.csv")')
+  Hint: Have you tried write.csv(meanDaysbySex,file="daysbySex.csv")?
+
+- Class: text
+  Output: 'Now we will continue our Descriptive Statistics lesson with Graphics and Charts. We will start with plots
+  of one variable;  Boxplots and Histograms.'
+  
+- Class: cmd_question
+  Output: 'Boxplots are a visual representation of the descriptive measures obtained with the summary function,
+  quartiles, min, median, max and a bit more information. Boxplots in R are implemented with the function
+  boxplot(). Type now boxplot(absenteeism$days,col="blue").' 
+  CorrectAnswer: boxplot(absenteeism$days,col="blue")
+  AnswerTests: omnitest(correctExpr='boxplot(absenteeism$days,col="blue")')
+  Hint: Have tried boxplot(absenteeism$days,col="blue")?
+
+- Class: text
+  Output: 'The blue region shows the interquartile range with the median (dark line). The circle dots
+  outside the min and max lines identify outliers.'
+  
+- Class: cmd_question
+  Output: 'We can also plot several variables side-to-side which can be useful to compare them. To compare
+  the continuous variables of the data set iris type boxplot(iris[,-5],col="red"), we exclude column 5, species which
+  is categorical'
+  CorrectAnswer: boxplot(iris[,-5],col="red")
+  AnswerTests: omnitest(correctExpr='boxplot(iris[,-5],col="red")')
+  Hint: Have tried boxplot(iris[,-5],col="red")?
+
+- Class: text
+  Output: 'Histograms are another useful plot of a single variable. Hhistograms visualize the distribution
+  of frequencies of quantitative variables, and are very useful to learn about the underlying probability
+  distribution function of the variable.' 
+
+- Class: cmd_question
+  Output: 'In R histograms are created with the hist() function. Create an histogram of the variable 
+  Petal.Length typing hist(iris$Petal.Length).'
+  CorrectAnswer: hist(iris$Petal.Length)
+  AnswerTests: omnitest(correctExpr='hist(iris$Petal.Length)')
+  Hint: Have you tried hist(iris$Petal.Length)?
+
+- Class: figure
+  Output: 'The hist() function can take options for customizing different aspects such as the size of
+  bins with breaks=n, use the density probability instead of the absolute frequency in the vertical axis 
+  with prob=t and add on top the normal density calculated with the mean and standard deviation of
+  the variable, as shown in the following plot.' 
+  Figure: histPetalLength.R
+  FigureType: new
+
+- Class: text
+  Output: 'The variable Petal.Length has excessive load at the left to adjust to the normal distribution, 
+  we would say that Petal.Length is skewed to the left.'
+
+- Class: text
+  Output: We will continue with Plots of two Variables. 
+  
+- Class: cmd_question
+  Output: 'We can have one variable and another variable which is a factor level. Factor levels are categorical 
+  variables. We can plot for example the variable number of absent days by sex (factor) from the absenteeism
+  data set. Type now plot(absenteeism$sex,absenteeism$days)'
+  CorrectAnswer: plot(absenteeism$sex,absenteeism$days)
+  AnswerTests: omnitest(correctExpr='plot(absenteeism$sex,absenteeism$days)')
+  Hint: Have you tried plot(absenteeism$sex,absenteeism$days)?
+  
+- Class: text
+  Output: 'We can also have plots where we have an Explanatory and a Response variable. We probably will
+  be interested on identifying potential causal effects between variables, the scatterplot
+  can be a good choice.' 
+  
+- Class: cmd_question
+  Output: 'The plot() function when passed two contínuous variables will drawss axes and add 
+  a scatterplot of points. Scatterplot the variables Petal.Width and Petal.Length typing
+  plot(iris$Petal.Width,iris$Petal.Length)'
+  CorrectAnswer: plot(iris$Petal.Width,iris$Petal.Length)
+  AnswerTests: omnitest(correctExpr='plot(iris$Petal.Width,iris$Petal.Length)')
+  Hint: Have you tried plot(iris$Petal.Width,iris$Petal.Length)?
+
+- Class: figure
+  Output: 'It seems that the wider the petal the longer it is. However the exploratory analysis as 
+  the name says is intended to explore not yet to make assessments with confidence. May be adding some 
+  colours to distinguish the three species of the iris set might be useful. I have prepared for you 
+  the following plot.'
+  Figure: scatterplotPetalLengthPetalWidth.R
+  FigureType: new
+
+- Class: text
+  Output: 'Now we see that within the same specie, at least in the case of setosa, the relationship between
+  width and length of petals is weak'
+
+- Class: cmd_question
+  Output: 'The multiple scatterplot can also be useful to take a first glance to the relationship among 
+  several pairs of variables in a single plot. Look at the relationship of the contínuos variables of the iris
+  data set (remove species) typing plot(iris[,-5], col=rgb(0,0,1,.15), pch=19). col and pch are options for
+  display.'
+  CorrectAnswer: 'plot(iris[,-5], col=rgb(0,0,1,.15), pch=19)'
+  AnswerTests: omnitest(correctExpr='plot(iris[,-5], col=rgb(0,0,1,.15), pch=19)')
+  Hint: Have tried plot(iris[,-5], col=rgb(0,0,1,.15), pch=19)?
