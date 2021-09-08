@@ -210,7 +210,7 @@
   Hint: Have tried boxplot(iris[,-5],col="red")?
 
 - Class: text
-  Output: 'Histograms are another useful plot of a single variable. Hhistograms visualize the distribution
+  Output: 'Histograms are another useful plot of a single variable. Histograms visualize the distribution
   of frequencies of quantitative variables, and are very useful to learn about the underlying probability
   distribution function of the variable.' 
 

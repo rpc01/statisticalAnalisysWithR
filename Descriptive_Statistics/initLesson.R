@@ -2,5 +2,6 @@
       # lesson is started. Any variables created here will show up in
       # the user's working directory and thus be accessible to them
       # throughout the lesson.
-suppressWarnings(absenteeism<-as.data.frame(openintro::absenteeism))
+assign("absenteeism", openintro::absenteeism, envir=globalenv())
+suppressWarnings(absenteeism<-as.data.frame(absenteeism))
 suppressWarnings(attach(absenteeism))
